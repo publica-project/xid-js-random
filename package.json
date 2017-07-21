@@ -1,0 +1,34 @@
+{
+  "name": "@publica/xid-js-random",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/seed.js",
+  "typings": "dist/seed.d.ts",
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "build.prod": "gulp tslint && gulp build",
+    "lint": "gulp tslint"
+  },
+  "author": "Bret Ikehara <bret.k.ikehara@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-tslint": "^6.1.3",
+    "gulp-typescript": "~3.1.3",
+    "gulp-util": "^3.0.8",
+    "gulp-webpack": "^1.5.0",
+    "run-sequence": "^2.0.0",
+    "ts-loader": "^1.3.3",
+    "tslint": "^3.15.1",
+    "typescript": "~2.0.10",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^2.2.0"
+  }
+}

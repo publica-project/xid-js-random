@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+  - '6'
+dist: trusty
+addons:
+  chrome: stable
+cache:
+  directories:
+    - node_modules
+env:
+  global:
+    # PUBLICA_NPM_TOKEN
+    secure: "slBa+7zY8Af+rfXmbDH5Wn/Vo6+2LYrLLnrwFVkkJY6Hcm7bd9pMomSlDZzZ3pZQdZhMwtYl6LQYPivsL7rRx+odtlCIW8VYWaF852L05Kanf4gYVChRJLC8f1IxQJ0+lmMNXJ5fRGOqhV9rmV0tgmR3fCu88/uOcVNS6nutzeaQEulHCr4jCGSKDjp17jdoaC/j1DF3NTzDehP0Tlh5RGdZ8ltrr4zpWLqkOxM0W8KlD2iOzAUx/xyyeoP4KKaBwq4xuMMWoR4dCLhkjvLrzCpz9/hz0wO6c4oCyAgJ7cbxilTdLE4qDMdO9WhIRg0GdFF1xvmcCMl9FN/6xrimer1xpoAVjMK7974LZzgTlvOyC/m203XgsdT5JJTFHYkgRjhqCsc3F2/FKPZtTfbmSBDVGf2IrGbvb3AbCFvLnWLL0zIcx03Z224KeIDjV7N22TYlITn7wGL3s0n2SSJR6T5t6RrJaS/CSj+xOblccbFzWeZsbUo29YhBNq9ab9bXWLoNfHAZVKIc/ngInFKH4vCCvcr+DLrOWfutNVB0VDZOKQ/jmpw9E4ZmIQ3h3vxEu6v/lHVMwua4F2H6P/AZfJmZiM0jDJy5YQwBon/ZMrZ3tQH3BhVn1EGENkSfBfAPd5Q9HFDPm2ZVJC/u0+9vlzggehH3tDfGn+LU3p7XhMw="
+notifications:
+  slack:
+    # publica, channel set by slack's integration setting for Travis-CI.
+    secure: "P61hlWUPh6HUK6z+I2KNJdBuOADioLRtWoN+r0vhKgAmqvXE9S5x26us3bsYJ0MdWGXdFPQYqJ7OOLw2EkiuMP/vqBQ+b++voQbKo9qr1rk13hDIBHKCxeY6O5SH8uuc78+U36OT8Vb7vjqoprSI3RgzludKlIp2/OKokvVGueLNm3mCHgv/Grt1eLKG7KI+6CsxmshAKOoZWupSnwiI0FGW6DnKoNv9yzzSD5ZE1PQ5H46P5s4a3aMvQqgg8jWxhFFrvWBK6yk0QeonvPKLXn1VVjLQ2Ks1PNIugV9LkULudzV6OIq9m9uX7fPCTEkQT47eaWGw3VGDa6tjKnSl3NUpPw/+RxEAObxuGLGsMpfGpiSiCOGttFE38W8IYOLSHSDsfri30hmlVmutoToTjTZ56bd+Zvu2eaAchKyui0D2MqA5pUfzR7Coqh9zVf32MZ1Y0Wr3AnbQmBfR1/tGs6vyVAIGDnxwL2HNPJ5gvfNjfo6TyMY5rH1iig9lnIynLUrxltY7WrEnZX4wj4KBqZlhVPsEY1Zy4Ear5RQnnn8Kl60GNW3KuDXKeU+lai+T3qJfcGCGSpwq/veFdqo3GT7k4mipAU8UcQzmkEosna1Pf5FqGRilnLOykcggs9SJMiwHHiduoB5NNhAJCqflcPB4AvLZE+yW3VliLjxg8Js="
+before_install:
+  # Disable the spinner, it looks bad on Travis
+  - npm config set spin false
+  # Log HTTP requests
+  - npm config set loglevel http
+install:
+  - npm install
+script:
+  - npm run build.prod
+deploy:
+  provider: npm
+  email: "infra@publica-project.com"
+  api_key: $PUBLICA_NPM_TOKEN
+  skip_cleanup: true
+  on:
+    branch: master
