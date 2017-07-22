@@ -13,3 +13,4 @@ Gulpfile.js
 karma.conf.js
 tsconfig.json
 webpack.config.js
+Makefile
